@@ -1,5 +1,3 @@
-import sys
-import random
 import time
 from scapy.all import IP, UDP, Raw, send
 
