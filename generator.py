@@ -1,7 +1,7 @@
 import sys
 import random
 import time
-import scapy
+from scapy.all import IP, UDP, Raw, send
 
 dest_ip = "127.0.0.1"
 
@@ -11,5 +11,5 @@ packets = [(3333, 3334, b"meow"), (3334, 3335, b"meow meow"), (3335, 3336, b"raw
 for i, (sport, dport, payload) in enumerate(packets, start=1):
    #build packet as IP layer / UDP layer / Raw payload
    pkt = IP(dst=dest_ip) / UDP(sport=sport, dport=dport) / Raw(load=payload)
-   send(pkt, verbose=False) #send packet at layer 3
+   send(pkt) #send packet
    time.sleep(0.1) #small delay so wireshark can capture each packet clearly
